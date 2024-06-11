@@ -12,4 +12,6 @@ export const Default = Template.bind({});
 Default.args = {
   title: 'Sample Title',
   content: 'Sample text content.',
+  disabled: false,
+  backgroundColor: 'transparent',
 };

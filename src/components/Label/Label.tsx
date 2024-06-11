@@ -1,21 +1,28 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { ThemedStyledProps } from 'styled-components';
 
-interface LabelProps {
+interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
   text: string;
   htmlFor: string;
-  style?: React.CSSProperties;
+  disabled?: boolean;
+  backgroundColor?: string;
 }
 
-const StyledLabel = styled.label`
+const StyledLabel = styled.label<ThemedStyledProps<LabelProps>>`
   font-family: Calibri;
   font-size: 14px;
-  color: #333;
+  color: ${({ disabled }) => (disabled ? '#aaa' : '#333')};
+  background-color: ${({ backgroundColor }) => backgroundColor || 'transparent'};
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
 `;
 
-const Label: React.FC<LabelProps> = ({ text, htmlFor, style }) => {
+const Label: React.FC<LabelProps> = ({ text, htmlFor, disabled, backgroundColor, style }) => {
   return (
-    <StyledLabel htmlFor={htmlFor} style={style}>
+    <StyledLabel 
+      htmlFor={htmlFor}
+      disabled={disabled}
+      backgroundColor={backgroundColor}
+      style={style}>
       {text}
     </StyledLabel>
   );

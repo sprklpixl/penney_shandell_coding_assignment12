@@ -14,4 +14,6 @@ Default.args = {
   imageAlt: 'Card Image',
   title: 'Project Name',
   textContent: 'This is a description.',
+  disabled: false,
+  backgroundColor: '#fff',
 };

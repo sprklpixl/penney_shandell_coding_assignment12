@@ -12,4 +12,6 @@ export const Default = Template.bind({});
 Default.args = {
   text: 'Sample Label',
   htmlFor: 'sample-input',
+  disabled: false,
+  backgroundColor: 'transparent',
 };

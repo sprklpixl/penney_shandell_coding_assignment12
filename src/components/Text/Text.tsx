@@ -1,14 +1,18 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { ThemedStyledProps } from 'styled-components';
 
-interface TextProps {
+interface TextProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
   content: string;
+  disabled?: boolean;
+  backgroundColor?: string;
   style?: React.CSSProperties;
 }
 
-const StyledText = styled.div`
+const StyledText = styled.div<ThemedStyledProps<TextProps>>`
   padding: 8px;
+  background-color: ${({ backgroundColor }) => backgroundColor || 'transparent'};
+  color: ${({ disabled }) => (disabled ? '#aaa' : '#666')};
 `;
 
 const Title = styled.h3`
@@ -17,18 +21,21 @@ const Title = styled.h3`
   font-family: Calibri;
   font-weight: bold;
   font-size: 18px;
-  color: #333;
+  color: inherit;
 `;
 
 const Content = styled.p`
   font-family: Calibri;
   font-size: 14px;
-  color: #000;
+  color: inherit;
 `;
 
-const Text: React.FC<TextProps> = ({ title, content, style }) => {
+const Text: React.FC<TextProps> = ({ title, content, disabled, backgroundColor, style }) => {
   return (
-    <StyledText style={style}>
+    <StyledText
+      disabled={disabled}
+      backgroundColor={backgroundColor}
+      style={style}>
       {title && <Title>{title}</Title>}
       <Content>{content}</Content>
     </StyledText>

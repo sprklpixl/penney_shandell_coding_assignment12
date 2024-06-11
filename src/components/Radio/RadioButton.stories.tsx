@@ -14,4 +14,6 @@ Default.args = {
   value: 'sample',
   checked: false,
   onChange: () => alert('Radio button clicked!'),
+  disabled: false,
+  backgroundColor: 'transparent',
 };
